@@ -22,7 +22,7 @@ from pyrogram.errors import FloodWait
 from ethon.pyfunc import video_metadata
 from ethon.telefunc import force_sub
 
-ft = f"To use this bot you've to join @{fs}."
+ft = f"عَزيزي لأستخدام البوت عَليك الاشتراك  @{fs}."
 
 batch = []
 
@@ -45,7 +45,7 @@ async def _batch(event):
         return await event.reply("You've already started one batch, wait for it to complete you dumbfuck owner!")
     async with Drone.conversation(event.chat_id) as conv: 
         if s != True:
-            await conv.send_message("Send me the message link you want to start saving from, as a reply to this message.", buttons=Button.force_reply())
+            await conv.send_message("أرسل لي رابط الرسالة الذي تريد البدء في الحفظ منه، كرد على هذه الرسالة.", buttons=Button.force_reply())
             try:
                 link = await conv.get_reply()
                 try:
@@ -55,22 +55,22 @@ async def _batch(event):
                     return conv.cancel()
             except Exception as e:
                 print(e)
-                await conv.send_message("Cannot wait more longer for your response!")
+                await conv.send_message("لا يمكنني الانتظار لفترة أطول لردك!")
                 return conv.cancel()
-            await conv.send_message("Send me the number of files/range you want to save from the given message, as a reply to this message.", buttons=Button.force_reply())
+            await conv.send_message("أرسل لي عدد الملفات/النطاق الذي تريد حفظه من الرسالة المعطاة، كرد على هذه الرسالة.", buttons=Button.force_reply())
             try:
                 _range = await conv.get_reply()
             except Exception as e:
                 print(e)
-                await conv.send_message("Cannot wait more longer for your response!")
+                await conv.send_message("لا يمكنني الانتظار لفترة أطول لردك!")
                 return conv.cancel()
             try:
                 value = int(_range.text)
                 if value > 100:
-                    await conv.send_message("You can only get upto 100 files in a single batch.")
+                    await conv.send_message("يمكنك فقط الحصول على ما يصل إلى 100 ملف في دفعة واحدة.")
                     return conv.cancel()
             except ValueError:
-                await conv.send_message("Range must be an integer!")
+                await conv.send_message("يجب أن يكون النطاق عددا صحيحا!")
                 return conv.cancel()
             batch.append(event.sender_id)
             await run_batch(userbot, Bot, event.sender_id, _link, value) 
@@ -103,7 +103,7 @@ async def run_batch(userbot, client, sender, link, _range):
             await get_bulk_msg(userbot, client, sender, link, i) 
         except FloodWait as fw:
             if int(fw.x) > 299:
-                await client.send_message(sender, "Cancelling batch since you have floodwait more than 5 minutes.")
+                await client.send_message(sender, "إلغاء الدفعة منذ أن انتظرت أكثر من 5 دقائق.")
                 break
             await asyncio.sleep(fw.x + 5)
             await get_bulk_msg(userbot, client, sender, link, i)
