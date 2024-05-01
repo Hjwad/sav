@@ -42,7 +42,7 @@ async def _batch(event):
         await event.reply(r)
         return       
     if event.sender_id in batch:
-        return await event.reply("You've already started one batch, wait for it to complete you dumbfuck owner!")
+        return await event.reply("لقد بدأت بالفعل دفعة واحدة، انتظر حتى تكتمل أيها المالك الغبي!")
     async with Drone.conversation(event.chat_id) as conv: 
         if s != True:
             await conv.send_message("أرسل لي رابط الرسالة الذي تريد البدء في الحفظ منه، كرد على هذه الرسالة.", buttons=Button.force_reply())
