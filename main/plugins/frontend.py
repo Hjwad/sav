@@ -15,7 +15,7 @@ from ethon.telefunc import force_sub
 
 ft = f"To use this bot you've to join @{fs}."
 
-message = "Send me the message link you want to start saving from, as a reply to this message."
+message = "أرسل لي رابط الرسالة الذي تريد البدء في الحفظ منه، كرد على هذه الرسالة."
 
 @Drone.on(events.NewMessage(incoming=True, func=lambda e: e.is_private))
 async def clone(event):
